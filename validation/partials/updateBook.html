@@ -1,0 +1,69 @@
+<div ng-init="getAllBooks()">
+  <h1>Public Library: Update a book record</h1>
+  <form class="form-horizontal" name="bookInfo" novalidate="novalidate" ng-submit="updateBook()">
+    <div class="form-group" ng-hide="isSelected">
+      <label class="col-sm-4 control-label" for="ubBook">Select book</label>
+      <div class="col-sm-8">
+        <select class="form-control" id="ubBook" ng-model="book" ng-change="selectBook()"
+                ng-options="(book.isbn + ' - ' + book.title) for book in books">
+          <option value="">...</option>
+        </select>
+      </div>
+    </div>
+    <div ng-show="isSelected">
+      <div class="form-group">
+        <label class="col-sm-3 control-label" for="ubIsbn">ISBN</label>
+        <div class="col-sm-9">
+          <output class="form-control" id="ubIsbn" name="isbn" ng-bind="book.isbn" disabled="disabled" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label" for="ubTitle">Title</label>
+        <div class="col-sm-9">
+          <input class="form-control" id="ubTitle" type="text" name="title" ng-maxlength="50"
+                 ng-model="book.title" ng-required="true" />
+            <span class="bg-warning" ng-if="bookInfo.$submitted || bookInfo.title.$dirty">
+              <span ng-messages="bookInfo.title.$error"
+                    ng-messages-include="partials/errorMessages/errorTitle.html">
+              </span>
+            </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label" for="ubYear">Year</label>
+        <div class="col-sm-9">
+          <input class="form-control" id="ubYear" type="number" name="year" ng-model="book.year"
+                 ng-min="1459" ng-max="{{currentYear}}"  ng-required="true" />
+            <span class="bg-warning" ng-if="bookInfo.$submitted || bookInfo.year.$dirty">
+              <span ng-messages="bookInfo.year.$error"
+                    ng-messages-include="partials/errorMessages/errorYear.html">
+              </span>
+            </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label" for="ubEdition">Edition</label>
+        <div class="col-sm-9">
+          <input class="form-control" id="ubEdition" type="number" name="edition"
+                 ng-model="book.edition" ng-min="1" ng-model="book.edition" />
+          <span class="bg-warning" ng-if="bookInfo.$submitted || bookInfo.edition.$dirty">
+            <span ng-messages="bookInfo.edition.$error"
+                  ng-messages-include="partials/errorMessages/errorEdition.html">
+            </span>
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-12">
+          <button class="btn btn-warning btn-block" type="submit" name="commit"
+                  ng-disabled="bookInfo.$invalid || bookInfo.$pristine">
+            Save Changes
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <nav>
+    <a href="#/main">Back to main menu</a>
+  </nav>
+</div>

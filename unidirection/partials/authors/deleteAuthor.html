@@ -1,0 +1,58 @@
+<div ng-init="getAllAuthors()">
+  <div ng-show="loadingProgress">
+    <progress></progress>
+  </div>
+  <div ng-hide="loadingProgress">
+    <h1>Delete an author record</h1>
+    <form class="form-horizontal" name="authorInfo">
+      <div class="form-group" ng-hide="isSelected">
+        <label class="col-sm-4 control-label" for="daAuthor">Select author</label>
+        <div class="col-sm-8">
+          <select class="form-control" id="daAuthor" ng-model="author" ng-change="selectAuthor()"
+                  ng-options="author.name for author in authors">
+            <option value="">...</option>
+          </select>
+        </div>
+      </div>
+      <div ng-show="isSelected">
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="daAuthorId">ID</label>
+          <div class="col-sm-9">
+            <output class="form-control" id="daAuthorId" name="authorId" ng-bind="author.authorId"
+                    disabled="disabled" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="daName">Name</label>
+          <div class="col-sm-9">
+            <output class="form-control" id="daName" name="name" ng-bind="author.name" disabled="disabled" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="daBirth">Birth</label>
+          <div class="col-sm-9">
+            <output class="form-control" id="daBirth" name="birthDate"
+                    ng-bind="author.birthDate | date:'yyyy-MM-dd'" disabled="disabled" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="daDeath">Death</label>
+          <div class="col-sm-9">
+            <output class="form-control" id="daDeath" name="deathDate"
+                    ng-bind="author.deathDate | date:'yyyy-MM-dd'" disabled="disabled" />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-12">
+            <button class="btn btn-danger btn-block" type="submit" name="commit" ng-click="destroyAuthor()">
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <nav>
+      <a href="#/authors/manageAuthors">Back to "Manage Authors" menu</a>
+    </nav>
+  </div>
+</div>

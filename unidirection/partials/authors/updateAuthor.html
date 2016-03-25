@@ -1,0 +1,75 @@
+<div ng-init="getAllAuthors()">
+  <div ng-show="loadingProgress">
+    <progress></progress>
+  </div>
+  <div ng-hide="loadingProgress">
+    <h1>Update an author record</h1>
+    <form class="form-horizontal" name="authorInfo" novalidate="novalidate" ng-submit="updateAuthor()">
+      <div class="form-group" ng-hide="isSelected">
+        <label class="col-sm-4 control-label" for="uaAuthor">Select author</label>
+        <div class="col-sm-8">
+          <select class="form-control" id="uaAuthor" ng-model="author" ng-change="selectAuthor()"
+                  ng-options="author.name for author in authors">
+            <option value="">...</option>
+          </select>
+        </div>
+      </div>
+      <div ng-show="isSelected">
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="uaAuthorId">ID</label>
+          <div class="col-sm-9">
+            <output class="form-control" id="uaAuthorId" name="authorId" ng-bind="author.authorId"
+                    disabled="disabled" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="uaName">Name</label>
+          <div class="col-sm-9">
+            <input class="form-control" id="uaName" type="text" name="name" ng-model="author.name"
+                   ng-required="true" />
+            <span class="bg-warning" ng-if="authorInfo.$submitted || authorInfo.name.$dirty">
+              <span ng-messages="authorInfo.name.$error"
+                    ng-messages-include="partials/authors/errorMessages/errorName.html">
+              </span>
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="uaBirth">Birth</label>
+          <div class="col-sm-9">
+            <input class="form-control" id="uaBirth" type="date" name="birthDate" ng-model="author.birthDate"
+                   placeholder="yyyy-MM-dd" ng-required="true" />
+            <span class="bg-warning" ng-if="authorInfo.$submitted || authorInfo.birthDate.$dirty">
+              <span ng-messages="authorInfo.birthDate.$error"
+                    ng-messages-include="partials/authors/errorMessages/errorDate.html">
+              </span>
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="uaDeath">Death</label>
+          <div class="col-sm-9">
+            <input class="form-control" id="uaDeath" type="date" name="deathDate" ng-model="author.deathDate"
+                   ng-min="author.birthDate" placeholder="yyyy-MM-dd" />
+            <span class="bg-warning" ng-if="authorInfo.$submitted || authorInfo.deathDate.$dirty">
+              <span ng-messages="authorInfo.deathDate.$error"
+                    ng-messages-include="partials/authors/errorMessages/errorDate.html">
+              </span>
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-12">
+            <button class="btn btn-warning btn-block" type="submit" name="commit"
+                    ng-disabled="authorInfo.$invalid || authorInfo.$pristine || authorInfo.$pending">
+              Save Changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <nav>
+      <a href="#/authors/manageAuthors">Back to "Manage Authors" menu</a>
+    </nav>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<div ng-init="getAllBooks()">
+  <h1>Public Library: Delete a book record</h1>
+  <form class="form-horizontal" name="bookInfo">
+    <div class="form-group" ng-hide="book">
+      <label class="col-sm-4 control-label" for="dbBook">Select book</label>
+      <div class="col-sm-8">
+        <select class="form-control" id="dbBook" ng-model="book"
+                ng-options="(book.isbn + ' - ' + book.title) for book in books">
+          <option value="">...</option>
+        </select>
+      </div>
+    </div>
+    <div ng-show="book">
+      <div class="form-group">
+        <label class="col-sm-3 control-label" for="dbIsbn">ISBN</label>
+        <div class="col-sm-9">
+          <output class="form-control" id="dbIsbn" name="isbn" ng-bind="book.isbn" disabled="disabled" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label" for="dbTitle">Title</label>
+        <div class="col-sm-9">
+          <output class="form-control" id="dbTitle" name="title" ng-bind="book.title" disabled="disabled" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label" for="dbYear">Year</label>
+        <div class="col-sm-9">
+          <output class="form-control" id="dbYear" name="year" ng-bind="book.year" disabled="disabled" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label" for="dbEdition">Edition</label>
+        <div class="col-sm-9">
+          <output class="form-control" id="dbEdition" name="edition" ng-bind="book.edition" disabled="disabled" />
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-12">
+          <button class="btn btn-danger btn-block" type="submit" name="commit" ng-click="destroyBook()">
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <nav>
+    <a href="#/main">Back to main menu</a>
+  </nav>
+</div>

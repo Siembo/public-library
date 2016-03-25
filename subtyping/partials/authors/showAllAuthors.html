@@ -1,0 +1,23 @@
+<div ng-init="getAllAuthors()">
+  <div ng-show="loadingProgress">
+    <progress></progress>
+  </div>
+  <div ng-hide="loadingProgress">
+    <h1>List all authors</h1>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>ID</th><th>Name</th><th>Bio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="author in authors">
+          <td>{{author.personId}}</td><td>{{author.name}}</td><td>{{author.biography}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <nav>
+      <a href="#/authors/manageAuthors">Back to "Manage Authors" menu</a>
+    </nav>
+  </div>
+</div>

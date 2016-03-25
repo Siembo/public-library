@@ -1,0 +1,24 @@
+<div>
+  <div ng-init="loadingProgress()">
+    <progress ng-show="showLoading"></progress>
+  </div>
+  <div ng-init="getAllBooks()" ng-hide="showLoading">
+    <h1>Public Library: List all books</h1>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>ISBN</th><th>Title</th><th>Year</th><th>Edition</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="book in books">
+          <td>{{book.isbn}}</td><td>{{book.title}}</td>
+          <td>{{book.year}}</td><td>{{book.edition}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <nav>
+      <a href="#/main">Back to main menu</a>
+    </nav>
+  </div>
+</div>

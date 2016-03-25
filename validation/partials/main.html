@@ -1,0 +1,66 @@
+<div>
+  <hgroup>
+    <h1>Public Library</h1>
+    <h2>Validation Example App</h2>
+    <h3>
+      An example of a a single-class frontend web app with constraint validation built with
+      <a href="https://angularjs.org">AngularJS</a> Framework and <a href="https://www.parse.com">
+      Parse</a> cloud storage service
+    </h3>
+  </hgroup>
+  <figure style="float:right">
+    <a href="https://plus.google.com/u/0/b/104237216582874489152/104237216582874489152/about">
+      <img property="thumbnailUrl" src="../fig/machine-cog.svg" width="120"
+           title="Icon made by Lorc under CC BY 3.0. Available on http://game-icons.net" />
+    </a>
+  </figure>
+  <p>This app is accompanied by a <a href="../validation-tutorial.html">tutorial</a>. See also the
+    <a class="link" href="http://web-engineering.info">project page</a>.
+    This app supports the following operations:
+  </p>
+  <menu class="list-unstyled">
+    <li><a href="#/showAllBooks"><button type="button">List all Books</button></a></li>
+    <li><a href="#/createBook"><button type="button">Add a new Book</button></a></li>
+    <li><a href="#/updateBook"><button type="button">Update a Book</button></a></li>
+    <li><a href="#/deleteBook"><button type="button">Delete a Book</button></a></li>
+    <li><button type="button" ng-click="clearDatabase()">Clear database</button></li>
+    <li><button type="button" ng-click="createTestData()">Create test data</button></li>
+  </menu>
+  <p>
+    For playing with the app, you may first want to <button>Create test data</button> and then
+    view it with <button>List all Books</button>. For observing the internal status and error
+    messages, turn on the JavaScript console.
+  </p>
+  <p>
+    This JavaScript frontend data management app takes care of only one object type ("books")
+    and supports the four standard data management operations (<strong>C</strong>reate/<strong>
+    R</strong>ead/<strong>U</strong>pdate/<strong>D</strong>elete). It extends the minimal app
+    (Part 1) by adding <strong>constraint validation</strong>, but it needs to be enhanced by
+    adding further important parts of the app's overall functionality:
+  </p>
+  <ul>
+    <li><a href="../unidirection/index.html">Part 3</a>:
+      Managing <strong>unidirectional associations</strong> between object types.
+    </li>
+    <li><a href="../bidirection/index.html">Part 4</a>:
+      Managing <strong>bidirectional associations</strong> between object types.
+    </li>
+    <li><a href="../subtyping/index.html">Part 5</a>:
+      Handling <strong>subtype</strong> (inheritance) relationships between object types.
+    </li>
+  </ul>
+  <p>You may also want to take a look at our <a href="../MinimalApp/index.html">Minimal App</a>,
+    without CSS styling and without validation.</p>
+  <footer style="font-size: small;">
+    <hr />
+    <div>Copyright © 2013-2016 Gerd Wagner,
+      <a href="http://www.tu-cottbus.de/fakultaet1/de/internet-technologie">Chair of Internet
+        Technology</a>, Brandenburg University of Technology, Germany. The code of this tutorial
+      web app is licensed under <a rel="license" href="http://www.codeproject.com/info/cpol10.aspx">
+        The Code Project Open License (CPOL)</a>, implying that the code is provided "as-is", can
+      be modified to create derivative works, can be redistributed, and can be used in commercial
+      applications, but the associated article must not be distributed or republished without the
+      author's consent.
+    </div>
+  </footer>
+</div>

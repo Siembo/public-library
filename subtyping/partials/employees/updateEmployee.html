@@ -1,0 +1,91 @@
+<div ng-init="getAllEmployees()">
+  <div ng-show="loadingProgress">
+    <progress></progress>
+  </div>
+  <div ng-hide="loadingProgress">
+    <h1>Update a employee record</h1>
+    <form class="form-horizontal" name="employeeInfo" novalidate="novalidate" ng-submit="updateEmployee()">
+      <div class="form-group" ng-hide="isSelected">
+        <label class="col-sm-4 control-label" for="upEmployee">Select employee</label>
+        <div class="col-sm-8">
+          <select class="form-control" id="upEmployee" ng-model="employee" ng-change="prepareEmployee()"
+                  ng-options="employee.name for employee in employees">
+            <option value="">...</option>
+          </select>
+        </div>
+      </div>
+      <div ng-show="isSelected">
+        <div class="form-group">
+          <label class="col-sm-4 control-label" for="uePersonId">ID</label>
+          <div class="col-sm-8">
+            <output class="form-control" id="uePersonId" name="personId" ng-bind="employee.personId"
+                    disabled="disabled" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label" for="ueName">Name</label>
+          <div class="col-sm-8">
+            <input class="form-control" id="ueName" type="text" name="name" ng-model="employee.name"
+                   ng-required="true" />
+            <span class="bg-warning" ng-if="employeeInfo.$submitted || employeeInfo.name.$dirty">
+              <span ng-messages="employeeInfo.name.$error"
+                    ng-messages-include="partials/employees/errorMessages/errorName.html">
+              </span>
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label" for="ueEmpNo">Employee No.</label>
+          <div class="col-sm-8">
+            <input class="form-control" id="ueEmpNo" type="number" name="empNo" ng-min="1"
+                   ng-model="employee.empNo" pl-stdid="pl-stdid" ng-required="true" />
+            <span class="bg-warning" ng-if="employeeInfo.$submitted || employeeInfo.empNo.$dirty">
+              <span ng-messages="employeeInfo.empNo.$error"
+                    ng-messages-include="partials/employees/errorMessages/errorEmpNo.html">
+              </span>
+              <span ng-if="employeeInfo.empNo.$pending.plStdid">Checking the library...</span>
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label" for="ueSubtype">Special type</label>
+          <div class="col-sm-8">
+            <select class="form-control" id="ueSubtype" name="subtype" ng-model="employee.subtype"
+                    ng-options="employeeTypeOption for employeeTypeOption in employeeTypeOptions"
+                    ng-disabled="isDisabled">
+              <option value="">...</option>
+            </select>
+          </div>
+        </div>
+        <div ng-switch="employee.subtype">
+          <div class="form-group" ng-switch-when="Manager">
+            <label class="col-sm-4 control-label" for="ueDepartment">Department</label>
+            <div class="col-sm-8">
+              <input class="form-control" id="ueDepartment" type="text" name="department"
+                     ng-model="employee.department" ng-required="true" />
+              <span class="bg-warning" ng-if="employeeInfo.$submitted || employeeInfo.department.$dirty">
+                <span ng-messages="employeeInfo.department.$error"
+                      ng-messages-include="partials/employees/errorMessages/errorDepartment.html">
+                </span>
+              </span>
+            </div>
+          </div>
+          <div ng-switch-default="ng-switch-default"></div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-12">
+            <button class="btn btn-warning btn-block" type="submit" name="commit"
+                    ng-disabled="employeeInfo.$invalid || employeeInfo.$pristine">
+                Save Changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <nav>
+      <a href="#/employees/manageEmployees">
+        Back to "Manage Employees" menu
+      </a>
+    </nav>
+  </div>
+</div>

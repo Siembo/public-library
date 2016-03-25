@@ -1,0 +1,97 @@
+<div ng-init="getAllBooks()">
+  <div ng-show="loadingProgress">
+    <progress></progress>
+  </div>
+  <div ng-hide="loadingProgress">
+    <h1>Update a book record</h1>
+    <form class="form-horizontal" name="bookInfo" novalidate="novalidate" ng-submit="updateBook()">
+      <div class="form-group" ng-hide="isSelected">
+        <label class="col-sm-4 control-label" for="ubBook">Select book</label>
+        <div class="col-sm-8">
+          <select class="form-control" id="ubBook" ng-model="book" ng-change="prepareBook()"
+                  ng-options="(book.isbn + ' - ' + book.title) for book in books">
+            <option value="">...</option>
+          </select>
+        </div>
+      </div>
+      <div ng-show="isSelected">
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="ubIsbn">ISBN</label>
+          <div class="col-sm-9">
+            <output class="form-control" id="ubIsbn" name="isbn" ng-bind="book.isbn" disabled="disabled" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="ubTitle">Title</label>
+          <div class="col-sm-9">
+            <input class="form-control" id="ubTitle" type="text" name="title" ng-maxlength="50"
+                   ng-model="book.title" ng-required="true" />
+            <span class="bg-warning" ng-if="bookInfo.$submitted || bookInfo.title.$dirty">
+              <span ng-messages="bookInfo.title.$error"
+                    ng-messages-include="partials/books/errorMessages/errorTitle.html">
+              </span>
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="ubYear">Year</label>
+          <div class="col-sm-9">
+            <input class="form-control" id="ubYear" type="number" name="year" ng-model="book.year"
+                   ng-min="1459" ng-max="{{currentYear}}"  ng-required="true" />
+            <span class="bg-warning" ng-if="bookInfo.$submitted || bookInfo.year.$dirty">
+              <span ng-messages="bookInfo.year.$error"
+                    ng-messages-include="partials/books/errorMessages/errorYear.html">
+              </span>
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="ubPublisher">Publisher</label>
+          <div class="col-sm-9">
+            <select class="form-control" id="ubPublisher" name="publisher" ng-model="book.publisher"
+                    ng-options="publisherOption.name for publisherOption in publisherOptions">
+              <option value="">...</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="ubAuthors">Authors</label>
+          <div class="col-sm-offset-3">
+            <div class="col-sm-9">
+              <ul>
+                <li ng-repeat="author in book.authors">
+                  <span id="ubAuthors">{{author.name}}</span>
+                  <button class="btn btn-danger btn-xs" type="button" ng-click="removeAuthorOption(author)">
+                    x
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <div class="col-sm-9">
+              <select class="form-control" ng-model="authorOption"
+                      ng-options="authorOption.name for authorOption in authorOptions">
+                <option value="">...</option>
+              </select>
+            </div>
+            <div class="col-sm-2">
+              <button class=" btn btn-info" type="button" ng-click="addAuthorOption()">
+                add
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-12">
+            <button class="btn btn-warning btn-block" type="submit" name="commit"
+                    ng-disabled="bookInfo.$invalid || bookInfo.$pristine">
+              Save Changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <nav>
+      <a href="#/books/manageBooks">Back to "Manage Books" menu</a>
+    </nav>
+  </div>
+</div>

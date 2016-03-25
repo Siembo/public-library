@@ -1,0 +1,70 @@
+<div ng-init="getAllEmployees()">
+  <div ng-show="loadingProgress">
+    <progress></progress>
+  </div>
+  <div ng-hide="loadingProgress">
+    <h1>Delete a employee record</h1>
+    <form class="form-horizontal" name="employeeInfo">
+      <div class="form-group" ng-hide="isSelected">
+        <label class="col-sm-4 control-label" for="deEmployee">Select employee</label>
+        <div class="col-sm-8">
+          <select class="form-control" id="deEmployee" ng-model="employee" ng-change="prepareEmployee()"
+                  ng-options="employee.name for employee in employees">
+            <option value="">...</option>
+          </select>
+        </div>
+      </div>
+      <div ng-show="isSelected">
+        <div class="form-group">
+          <label class="col-sm-4 control-label" for="dePersonId">ID</label>
+          <div class="col-sm-8">
+            <output class="form-control" id="dePersonId" name="personId" ng-bind="employee.personId"
+                    disabled="disabled" />
+          </div>
+        </div>
+        <div class="form-group" >
+          <label class="col-sm-4 control-label" for="deName">Name</label>
+          <div class="col-sm-8">
+            <output class="form-control" id="deName" name="name" ng-bind="employee.name"
+                    disabled="disabled" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label" for="deEmpNo">Employee no.</label>
+          <div class="col-sm-8">
+            <output class="form-control" id="deEmpNo" name="empNo" ng-bind="employee.empNo"
+                    disabled="disabled" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label" for="ueSubtype">Special type</label>
+          <div class="col-sm-8">
+            <select class="form-control" id="ueSubtype" name="subtype" ng-model="employee.subtype"
+                    ng-options="employeeTypeOption for employeeTypeOption in employeeTypeOptions"
+                    ng-disabled="isDisabled">
+              <option value="">...</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group" ng-if="employee.subtype == 'Manager'">
+          <label class="col-sm-4 control-label" for="ceDepartment">Department</label>
+          <div class="col-sm-8">
+            <output class="form-control" id="ceDepartment" type="text" name="department"
+                   ng-bind="employee.department" disabled="disabled" />
+          </div>
+        </div>
+        <div class="form-group" >
+          <div class="col-sm-12">
+            <button class="btn btn-danger btn-block" type="submit" name="commit"
+                    ng-click="destroyEmployee()">
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <nav>
+      <a href="#/employees/manageEmployees">Back to "Manage Employees" menu</a>
+    </nav>
+  </div>
+</div>

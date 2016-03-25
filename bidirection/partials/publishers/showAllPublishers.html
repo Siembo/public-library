@@ -1,0 +1,30 @@
+<div ng-init="getAllPublishers()">
+  <div ng-show="loadingProgress">
+    <progress></progress>
+  </div>
+  <div ng-hide="loadingProgress">
+    <h1>List all publishers</h1>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Name</th><th>Address</th><th>Published books</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="publisher in publishers">
+          <td>{{publisher.name}}</td><td>{{publisher.address}}</td>
+          <td>
+            <ul>
+              <li ng-repeat="publishedBook in publisher.publishedBooks">
+                {{publishedBook.title}}
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <nav>
+      <a href="#/publishers/managePublishers">Back to "Manage Publishers" menu</a>
+    </nav>
+  </div>
+</div>

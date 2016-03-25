@@ -1,0 +1,89 @@
+<div ng-init="prepareBook()">
+  <h1>Create a new book record</h1>
+  <form class="form-horizontal" name="bookInfo" novalidate="novalidate" ng-submit="addBook()">
+    <div class="form-group">
+      <label class="col-sm-4 control-label" for="cbIsbn">ISBN</label>
+      <div class="col-sm-8">
+        <input class="form-control" id="cbIsbn" type="text" name="isbn" ng-model="book.isbn"
+               ng-pattern="/\b\d{9}(\d|X)\b/" pl-stdid="pl-stdid" ng-required="true" />
+        <span class="bg-warning" ng-if="bookInfo.$submitted || bookInfo.isbn.$dirty">
+          <span ng-messages="bookInfo.isbn.$error"
+                ng-messages-include="partials/books/errorMessages/errorIsbn.html">
+          </span>
+          <span ng-if="bookInfo.isbn.$pending.plStdid">Checking the library...</span>
+        </span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-4 control-label" for="cbTitle">Title</label>
+      <div class="col-sm-8">
+        <input class="form-control" id="cbTitle" type="text" name="title" ng-maxlength="50"
+               ng-model="book.title" ng-required="true" />
+        <span class="bg-warning" ng-if="bookInfo.$submitted || bookInfo.title.$dirty">
+          <span ng-messages="bookInfo.title.$error"
+                ng-messages-include="partials/books/errorMessages/errorTitle.html">
+          </span>
+        </span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-4 control-label" for="cbYear">Year</label>
+      <div class="col-sm-8">
+        <input class="form-control" id="cbYear" type="number" name="year" ng-model="book.year"
+               ng-min="1459" ng-max="{{currentYear}}"  ng-required="true" />
+        <span class="bg-warning" ng-if="bookInfo.$submitted || bookInfo.year.$dirty">
+          <span ng-messages="bookInfo.year.$error"
+                ng-messages-include="partials/books/errorMessages/errorYear.html">
+          </span>
+        </span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-4 control-label" for="cbSubtype">Special type</label>
+      <div class="col-sm-8">
+        <select class="form-control" id="cbSubtype" name="subtype" ng-model="book.category"
+                ng-options="bookTypeOption for bookTypeOption in bookTypeOptions">
+          <option value="">...</option>
+        </select>
+      </div>
+    </div>
+    <div ng-switch="book.category">
+      <div class="form-group" ng-switch-when="Textbook">
+        <label class="col-sm-4 control-label" for="cbSubjectArea">Subject area</label>
+        <div class="col-sm-8">
+          <input class="form-control" id="cbSubjectArea" type="text" name="subjectArea"
+                 ng-model="book.subjectArea" ng-required="true" />
+          <span class="bg-warning" ng-if="bookInfo.$submitted || bookInfo.subjectArea.$dirty">
+            <span ng-messages="bookInfo.subjectArea.$error"
+                  ng-messages-include="partials/books/errorMessages/errorSubjectArea.html">
+            </span>
+          </span>
+        </div>
+      </div>
+      <div class="form-group" ng-switch-when="Biography">
+        <label class="col-sm-4 control-label" for="cbAbout">About</label>
+        <div class="col-sm-8">
+          <input class="form-control" id="cbAbout" type="text" name="about" ng-model="book.about"
+                 ng-required="true" />
+          <span class="bg-warning" ng-if="bookInfo.$submitted || bookInfo.about.$dirty">
+            <span ng-messages="bookInfo.about.$error"
+                  ng-messages-include="partials/books/errorMessages/errorAbout.html">
+            </span>
+          </span>
+        </div>
+      </div>
+      <div ng-switch-default="ng-switch-default"></div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-12">
+        <button class="btn btn-primary btn-block" type="submit" name="commit"
+                ng-disabled="bookInfo.$invalid || bookInfo.$pending">
+          Save
+        </button>
+      </div>
+    </div>
+  </form>
+  <nav>
+    <a href="#/books/manageBooks">Back to "Manage Books" menu</a>
+  </nav>
+</div>

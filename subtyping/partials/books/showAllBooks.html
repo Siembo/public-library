@@ -1,0 +1,34 @@
+<div ng-init="getAllBooks()">
+  <div ng-show="loadingProgress">
+    <progress></progress>
+  </div>
+  <div ng-hide="loadingProgress">
+    <h1>List all books</h1>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>ISBN</th><th>Title</th><th>Year</th><th>Special Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="book in books">
+          <td>{{book.isbn}}</td><td>{{book.title}}</td><td>{{book.year}}</td>
+          <td>
+            <span ng-switch="book.category">
+              <span ng-switch-when="Textbook">
+                {{book.subjectArea}} textbook
+              </span>
+              <span ng-switch-when="Biography">
+                Biography about {{book.about}}
+              </span>
+              <span ng-switch-default="ng-switch-default"></span>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <nav>
+      <a href="#/books/manageBooks">Back to "Manage Books" menu</a>
+    </nav>
+  </div>
+</div>
