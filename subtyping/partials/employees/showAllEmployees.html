@@ -1,0 +1,24 @@
+<div ng-init="getAllEmployees()">
+  <div ng-show="loadingProgress">
+    <progress></progress>
+  </div>
+  <div ng-hide="loadingProgress">
+    <h1>List all employees</h1>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>ID</th><th>Name</th><th>Emp.No.</th><th>Special Type of employee</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="employee in employees">
+          <td>{{employee.personId}}</td><td>{{employee.name}}</td><td>{{employee.empNo}}</td>
+          <td ng-if="employee.subtype">{{employee.subtype}} for {{employee.department}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <nav>
+      <a href="#/employees/manageEmployees">Back to "Manage Employees" menu</a>
+    </nav>
+  </div>
+</div>

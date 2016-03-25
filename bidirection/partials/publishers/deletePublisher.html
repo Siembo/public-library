@@ -1,0 +1,46 @@
+<div ng-init="getAllPublishers()">
+  <div ng-show="loadingProgress">
+    <progress></progress>
+  </div>
+  <div ng-hide="loadingProgress">
+    <h1>Delete a publisher record</h1>
+    <form class="form-horizontal" name="publisherInfo">
+      <div class="form-group" ng-hide="isSelected">
+        <label class="col-sm-4 control-label" for="dpPublisher">Select publisher</label>
+        <div class="col-sm-8">
+          <select class="form-control" id="dpPublisher" ng-model="publisher" ng-change="selectPublisher()"
+                  ng-options="publisher.name for publisher in publishers">
+            <option value="">...</option>
+          </select>
+        </div>
+      </div>
+      <div ng-show="isSelected">
+        <div class="form-group" >
+          <label class="col-sm-3 control-label" for="dpName">Name</label>
+          <div class="col-sm-9">
+            <output class="form-control" id="dpName" name="name" ng-bind="publisher.name"
+                    disabled="disabled" />
+          </div>
+        </div>
+        <div class="form-group" >
+          <label class="col-sm-3 control-label" for="dpAddress">Address</label>
+          <div class="col-sm-9">
+            <output class="form-control" id="dpAddress" name="address" ng-bind="publisher.address"
+                    disabled="disabled" />
+          </div>
+        </div>
+        <div class="form-group" >
+          <div class="col-sm-12">
+            <button class="btn btn-danger btn-block" type="submit" name="commit"
+                    ng-click="destroyPublisher()">
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <nav>
+      <a href="#/publishers/managePublishers">Back to "Manage Publishers" menu</a>
+    </nav>
+  </div>
+</div>

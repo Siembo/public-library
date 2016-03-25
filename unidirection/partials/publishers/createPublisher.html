@@ -1,0 +1,43 @@
+<div>
+  <h1>Create a new publisher record</h1>
+  <form class="form-horizontal" name="publisherInfo" novalidate="novalidate" ng-submit="addPublisher()">
+    <div class="form-group">
+      <label class="col-sm-3 control-label" for="cpName">Name</label>
+      <div class="col-sm-9">
+        <input class="form-control" id="cpName" type="text" name="name" ng-model="publisher.name"
+               pl-stdid="pl-stdid" ng-required="true" />
+        <span class="bg-warning" ng-if="publisherInfo.$submitted || publisherInfo.name.$dirty">
+          <span ng-messages="publisherInfo.name.$error"
+                ng-messages-include="partials/publishers/errorMessages/errorName.html">
+          </span>
+          <span ng-if="publisherInfo.name.$pending.plStdid">Checking the library...</span>
+        </span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label" for="cpAddress">Address</label>
+      <div class="col-sm-9">
+        <input class="form-control" id="cpAddress" type="text" name="address" ng-model="publisher.address"
+               ng-required="true" />
+        <span class="bg-warning" ng-if="publisherInfo.$submitted || publisherInfo.address.$dirty">
+          <span ng-messages="publisherInfo.address.$error"
+                ng-messages-include="partials/publishers/errorMessages/errorAddress.html">
+          </span>
+        </span>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-12">
+        <button class="btn btn-primary btn-block" type="submit" name="commit"
+                ng-disabled="publisherInfo.$invalid || publisherInfo.$pending">
+          Save
+        </button>
+      </div>
+    </div>
+  </form>
+  <nav>
+    <a href="#/publishers/managePublishers">
+      Back to "Manage Publishers" menu
+    </a>
+  </nav>
+</div>

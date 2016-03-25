@@ -1,0 +1,64 @@
+<div>
+  <hgroup>
+  <h1>Public Library</h1>
+  <h2>Subtyping Example App</h2>
+  <h3>An example of a frontend web app with subtyping/inheritance, built with AngularJS</h3>
+  </hgroup>
+  <figure style="float:right">
+    <a href="https://plus.google.com/u/0/b/104237216582874489152/104237216582874489152/about">
+      <img property="thumbnailUrl" src="../fig/machine-overdrive.svg" width="120"
+           title="Icon made by Lorc under CC BY 3.0. Available on http://game-icons.net"/>
+    </a>
+  </figure>
+  <p>
+    This example app is accompanied by a
+    <a href="../bidirectional-association-tutorial.html">tutorial</a>.
+    See also the <a class="link" href="http://web-engineering.info/index.html">project page</a>.
+  </p>
+  <p>This app supports the following operations:</p>
+  <menu class="list-unstyled">
+    <li>
+      <a href="#/books/manageBooks"><button type="button">Manage books</button></a>
+    </li>
+    <li>
+      <a href="#/authors/manageAuthors"><button type="button">Manage authors</button></a>
+    </li>
+    <li>
+      <a href="#/employees/manageEmployees"><button type="button">Manage employees</button></a>
+    </li>
+    <li>
+      <button type="button" ng-click="createTestData()">Create test data</button>
+    </li>
+    <li>
+      <button type="button" ng-click="clearDatabase()">Clear data</button>
+    </li>
+  </menu>
+  <p>The app supports the four standard data management operations
+    (<strong>C</strong>reate/<strong>R</strong>ead/<strong>U</strong>pdate/<strong>D</strong>elete).
+    For playing with the app, you may first want to <button type="button" ng-click="createTestData()">
+      Create test data</button> and then view it (e.g. by choosing "Manage books" and then "List
+    all books").</p>
+  <p>This example app takes care of two class hierarchies:
+    <ul>
+      <li>The simple segmentation of <code>Book</code> into <code>TextBook</code> and
+        <code>Biography</code>.</li>
+      <li>The segmentation of <code>Person</code> into <code>Author</code> and <code>Employee</code>
+        such that <code>Employee</code> has a further segment, <code>Manager</code>.</li>
+    </ul>
+  </p>
+  <p>For reading more about the other example apps of this tutorial, see our
+    <a class="link" href="http://web-engineering.info/index.html">project page</a>.</p>
+  <footer style="font-size: small;">
+    <hr />
+    <div>Copyright © 2013-2016 Gerd Wagner,
+      <a href="http://www.tu-cottbus.de/fakultaet1/de/internet-technologie">
+        Chair of Internet Technology
+      </a>,
+      Brandenburg University of Technology, Germany. The code of this tutorial web app is licensed
+      under <a rel="license" href="http://www.codeproject.com/info/cpol10.aspx"> The Code Project
+        Open License (CPOL)</a>, implying that the code is provided "as-is", can be modified to
+      create derivative works, can be redistributed, and can be used in commercial applications, but
+      the associated article must not be distributed or republished without the author's consent.
+    </div>
+  </footer>
+</div>

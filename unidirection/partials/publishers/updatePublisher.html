@@ -1,0 +1,53 @@
+<div ng-init="getAllPublishers()">
+  <div ng-show="loadingProgress">
+    <progress></progress>
+  </div>
+  <div ng-hide="loadingProgress">
+    <h1>Update a publisher record</h1>
+    <form class="form-horizontal" name="publisherInfo" novalidate="novalidate" ng-submit="updatePublisher()">
+      <div class="form-group" ng-hide="isSelected">
+        <label class="col-sm-4 control-label" for="upPublisher">Select publisher</label>
+        <div class="col-sm-8">
+          <select class="form-control" id="upPublisher" ng-model="publisher" ng-change="selectPublisher()"
+                  ng-options="publisher.name for publisher in publishers">
+            <option value="">...</option>
+          </select>
+        </div>
+      </div>
+      <div ng-show="isSelected">
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="upName">Name</label>
+          <div class="col-sm-9">
+            <output class="form-control" id="upName" name="name" ng-bind="publisher.name"
+                    disabled="disabled" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="upAddress">Address</label>
+          <div class="col-sm-9">
+            <input class="form-control" id="upAddress" type="text" name="address"
+                   ng-model="publisher.address" ng-required="true" />
+            <span class="bg-warning" ng-if="publisherInfo.$submitted || publisherInfo.address.$dirty">
+              <span ng-messages="publisherInfo.address.$error"
+                    ng-messages-include="partials/publishers/errorMessages/errorAddress.html">
+              </span>
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-12">
+            <button class="btn btn-warning btn-block" type="submit" name="commit"
+                    ng-disabled="publisherInfo.$invalid || publisherInfo.$pristine">
+                Save Changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <nav>
+      <a href="#/publishers/managePublishers">
+        Back to "Manage Publishers" menu
+      </a>
+    </nav>
+  </div>
+</div>

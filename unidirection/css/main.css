@@ -1,0 +1,55 @@
+/* ==========================================================================
+   Custom styles
+   ========================================================================== */
+
+body {
+  padding: 8px;
+}
+
+table th {
+  background: cornflowerblue;
+}
+
+menu {
+  width: 13em;
+  text-align: center;
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+menu li {
+  height: 1.5em;
+  margin: 2px auto;
+}
+
+menu li a {
+  color: black;
+}
+
+menu li button {
+  width: 12.8em;
+}
+
+footer {
+  margin: 2em auto;
+}
+
+form {
+  width: 30em;
+  margin: 2em 0;
+  padding: 8px;
+}
+
+progress {
+  margin-top: 10%;
+  width: 100%;
+}
+
+input.ng-dirty.ng-invalid {
+  border-color: #FA787E;
+}
+
+input.ng-dirty.ng-valid {
+  border-color: #78FA89;
+}

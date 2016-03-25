@@ -1,0 +1,53 @@
+<div ng-init="getAllAuthors()">
+  <div ng-show="loadingProgress">
+    <progress></progress>
+  </div>
+  <div ng-hide="loadingProgress">
+    <h1>Delete an author record</h1>
+    <form class="form-horizontal" name="authorInfo">
+      <div class="form-group" ng-hide="isSelected">
+        <label class="col-sm-4 control-label" for="daAuthor">Select author</label>
+        <div class="col-sm-8">
+          <select class="form-control" id="daAuthor" ng-model="author" ng-change="prepareAuthor()"
+                  ng-options="author.name for author in authors">
+            <option value="">...</option>
+          </select>
+        </div>
+      </div>
+      <div ng-show="isSelected">
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="daPersonId">ID</label>
+          <div class="col-sm-9">
+            <output class="form-control" id="daPersonId" name="personId" ng-bind="author.personId"
+                    disabled="disabled" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="daName">Name</label>
+          <div class="col-sm-9">
+            <output class="form-control" id="daName" name="name" ng-bind="author.name" disabled="disabled" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="daBiography">Biography</label>
+          <div class="col-sm-9">
+            <textarea class="form-control" id="daBiography" name="biography"
+                      ng-bind="author.biography" disabled="disabled">
+              This is my biography...
+            </textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-12">
+            <button class="btn btn-danger btn-block" type="submit" name="commit" ng-click="destroyAuthor()">
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <nav>
+      <a href="#/authors/manageAuthors">Back to "Manage Authors" menu</a>
+    </nav>
+  </div>
+</div>

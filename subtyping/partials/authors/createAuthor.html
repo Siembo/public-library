@@ -1,0 +1,50 @@
+<div ng-init="prepareAuthor()">
+  <h1>Create a new author record</h1>
+  <form class="form-horizontal" name="authorInfo" novalidate="novalidate" ng-submit="addAuthor()">
+    <div class="form-group">
+      <label class="col-sm-3 control-label" for="caPersonId">ID</label>
+      <div class="col-sm-9">
+        <input class="form-control" id="caPersonId" type="number" name="personId" ng-min="1"
+               ng-model="author.personId" pl-stdid="pl-stdid" ng-required="true" />
+        <span class="bg-warning" ng-if="authorInfo.$submitted || authorInfo.personId.$dirty">
+          <span ng-messages="authorInfo.personId.$error"
+                ng-messages-include="partials/authors/errorMessages/errorPersonId.html">
+          </span>
+          <span ng-if="authorInfo.personId.$pending.plStdid">Checking the library...</span>
+        </span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label" for="caName">Name</label>
+      <div class="col-sm-9">
+        <input class="form-control" id="caName" type="text" name="name" ng-model="author.name"
+               ng-required="true" />
+        <span class="bg-warning" ng-if="authorInfo.$submitted || authorInfo.name.$dirty">
+          <span ng-messages="authorInfo.name.$error"
+                ng-messages-include="partials/authors/errorMessages/errorName.html">
+          </span>
+        </span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label" for="caBiography">Biography</label>
+      <div class="col-sm-9">
+        <textarea class="form-control" id="caBiography" name="biography" ng-model="author.biography">
+        </textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-12">
+        <button class="btn btn-primary btn-block" type="submit" name="commit"
+                ng-disabled="authorInfo.$invalid || authorInfo.$pending">
+          Save
+        </button>
+      </div>
+    </div>
+  </form>
+  <nav>
+    <a href="#/authors/manageAuthors">
+      Back to "Manage Authors" menu
+    </a>
+  </nav>
+</div>

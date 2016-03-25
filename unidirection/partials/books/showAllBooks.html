@@ -1,0 +1,25 @@
+<div ng-init="getAllBooks()">
+  <div ng-show="loadingProgress">
+    <progress></progress>
+  </div>
+  <div ng-hide="loadingProgress">
+    <h1>List all books</h1>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>ISBN</th><th>Title</th><th>Year</th><th>Authors</th><th>Publisher</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="book in books">
+          <td>{{book.isbn}}</td><td>{{book.title}}</td><td>{{book.year}}</td>
+          <td><ul><li ng-repeat="author in book.authors">{{author.name}}</li></ul></td>
+          <td>{{book.publisher.name}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <nav>
+      <a href="#/books/manageBooks">Back to "Manage Books" menu</a>
+    </nav>
+  </div>
+</div>
